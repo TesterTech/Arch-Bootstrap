@@ -1,5 +1,5 @@
 # Arch-Bootstrap
-My own Arch bootstrap script, including postinstall. Should work out of the box from Fedora 30 and newer and LVM partitions.
+My own Arch bootstrap script, including postinstall. Should work out of the box from Fedora 30 and newer and a running system using LVM partitions.
 
 ## preparation
 - make sure to backup any data you want to keep, managing partitions can be tricky.

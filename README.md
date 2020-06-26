@@ -7,15 +7,13 @@ My own Arch bootstrap script, including postinstall. Should work out of the box 
 
 ## clone this repository
 
-```git clone && cd ```
+```git clone https://github.com/TesterTech/Arch-Bootstrap.git && cd Arch-Bootstrap```
 
 # Adjust script parameters if needed
 - These parameters can be adjusted based on what you want. Keep in mind that LVM_PARTITION could be different on your machine based on the choice of your partition.
 ```
 ARCH_VERSION=2020.06.01
 LVM_PARTITION=rhel-arch--root
-MOUNT_POINT=/mnt/archroot
-SCRIPT_DIR=$HOME/tmp
 ```
 
 ## run the get-arch-bootstrap.sh script 

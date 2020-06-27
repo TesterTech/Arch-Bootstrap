@@ -4,8 +4,8 @@ LVM_PARTITION=rhel-arch--root
 MOUNT_POINT=/mnt/archroot
 SCRIPT_DIR=$HOME/tmp
 
-export PACSTRAP=false
-export BOOTSTRAP_PREP=false
+export PACSTRAP=true
+export BOOTSTRAP_PREP=true
 
 echo "Mount ${LVM_PARTITION} to mount point ${MOUNT_POINT}"
 if [[ ! -d /mnt/archroot ]];
@@ -23,9 +23,12 @@ if ($PACSTRAP); then
     sudo pacman-key --init
     sudo pacman-key --populate archlinux
     sudo pacstrap /mnt/archroot base linux-lts linux-lts-headers vim lvm2 linux-firmware dialog iw dhcpcd networkmanager sudo emacs firefox steam neofetch obs-studio chromium git tinyxml2 kdiff3 remmina freerdp krita gimp fuse2 fuse3 libreoffice-fresh-nl mc man-pages man terminus-font terminus-font-otb rxvt-unicode rxvt-unicode-terminfo virtualbox vagrant virtualbox-sdk i3 dmenu rofi clipmenu perl-anyevent-i3 copyq python-pytest-runner python-mock  python-cached-property python-docopt python-texttable python-websocket-client python-docker python-dockerpty python-jsonschema python-paramiko npm maven 
+    sudo genfstab  -U / >> /mnt/archroot/etc/fstab.auto
+    echo "Note: automatic fstab in /etc/fstab.auto be sure to change!"
 fi
 
 if ($BOOTSTRAP_PREP); then
+    cd $SCRIPT_DIR
     echo "get the bootstrap and chroot into there (${SCRIPT_DIR}/root.x86_64/) "
 
     if [[ ! -f archlinux-bootstrap-$ARCH_VERSION-x86_64.tar.gz.sig ]]; then 
@@ -43,8 +46,10 @@ fi
 
 echo "arch-chroot into ${MOUNT_POINT}"
 sudo grub2-editenv - set menu_show_once=1
-curl -o '' >  ./root.x86_64/opt/aftercare.sh 
-sudo ./root.x86_64/bin/arch-chroot /mnt/archroot/
+sudo curl -o 'https://raw.githubusercontent.com/TesterTech/Arch-Bootstrap/master/arch-postinstall.sh' >  $SCRIPT_DIR/root.x86_64/opt/arch-postinstall.sh 
+sudo chmod +x ./root.x86_64/opt/arch-postinstall.sh
+echo "Note: don't forget to run the postinstall"
+sudo $SCRIPT_DIR/root.x86_64/bin/arch-chroot /mnt/archroot/
 
 # From the chroot environment adjust the Kernel Mode Settings
 # Add the required drivers there, in my case:
@@ -66,4 +71,3 @@ sudo ./root.x86_64/bin/arch-chroot /mnt/archroot/
 #git clone https://aur.archlinux.org/yay.git
 #cd yay
 #makepkg -si
-

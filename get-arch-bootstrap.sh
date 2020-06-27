@@ -4,7 +4,7 @@ LVM_PARTITION=rhel-arch--root
 MOUNT_POINT=/mnt/archroot
 
 export PACSTRAP=false
-export BOOTSTRAP_PREP=false
+export BOOTSTRAP_PREP=true
 
 echo "Mount ${LVM_PARTITION} to mount point ${MOUNT_POINT}"
 if [[ ! -d /mnt/archroot ]];
@@ -20,7 +20,8 @@ if ($PACSTRAP); then
     sudo pacman-key --init
     sudo pacman-key --populate archlinux
     sudo pacstrap /mnt/archroot base linux-lts linux-lts-headers
-    sudo genfstab  -U / >> /mnt/archroot/etc/fstab.auto
+    sudo genfstab  -U / >> /tmp/fstab.auto
+    sudo cp /tmp/fstab.auto /mnt/archroot/etc/fstab.auto
     echo "Note: automatic fstab in /etc/fstab.auto be sure to change!"
 fi
 
@@ -41,12 +42,13 @@ if ($BOOTSTRAP_PREP); then
     sudo tar xzf archlinux-bootstrap-$ARCH_VERSION-x86_64.tar.gz 
 fi
 
-echo "arch-chroot into ${MOUNT_POINT}"
 sudo grub2-editenv - set menu_show_once=1
+cd /tmp
+echo "Note: don't forget to run the postinstall from the /opt dir."
 curl 'https://raw.githubusercontent.com/TesterTech/Arch-Bootstrap/master/arch-postinstall.sh' -o arch-postinstall.sh
 sudo chmod +x arch-postinstall.sh
-sudo cp arch-postinstall.sh ./root.x86_64/opt/arch-postinstall.sh
-echo "Note: don't forget to run the postinstall from the /opt dir."
+sudo cp ./arch-postinstall.sh ./root.x86_64/opt/
+echo "arch-chroot into ${MOUNT_POINT}"
 sudo ./root.x86_64/bin/arch-chroot /mnt/archroot/
 
 # From the chroot environment adjust the Kernel Mode Settings

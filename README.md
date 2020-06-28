@@ -2,7 +2,8 @@
 My own Arch bootstrap script, including postinstall. Should work out of the box from Fedora 30 and newer and a running system using:
 - LVM partitions
 - UEFI boot
-- nvme SSD
+- One nvme SSD
+- Intel Graphics
 
 ## preparation
 - make sure to backup any data you want to keep, managing partitions can be tricky.

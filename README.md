@@ -22,5 +22,5 @@
 - Once script is done, install any additional software you want using pacman
 
 ## Exit Arch-chroot (Control + d) 
-- Run the Grub command ```sudo grub-mkconfig -o /etc/grub.d/grub.cfg``` to consolidate the Grub config 
+- Run the Grub command ```sudo grub-mkconfig -o /boot/grub/grub.cfg``` to consolidate the Grub config 
 - Reboot

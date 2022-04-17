@@ -7,6 +7,7 @@ echo "Run the rest of the aftercare script now ... "
 # After pacman installs 
 echo "Get the mkinitcpio.conf from github"
 curl 'https://raw.githubusercontent.com/TesterTech/Arch-Bootstrap/master/mkinitcpio.conf' -o /etc/mkinitcpio.conf
+sudo cp -f /tmp/fstab /etc/fstab
 pacman -Sy
 pacman -S --noconfirm base plasma-desktop gl-wayland kwayland-server \
 	              dhclient lvm2 linux-lts linux-lts-headers linux-firmware dialog iw \

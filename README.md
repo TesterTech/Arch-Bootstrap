@@ -7,11 +7,8 @@
 
 ```git clone --branch ubuntu https://github.com/TesterTech/Arch-Bootstrap.git && cd Arch-Bootstrap```
 
-# Adjust script parameters if needed
-- These parameters can be adjusted based on what you want. Keep in mind that LVM_PARTITION could be different on your machine based on the choice of your partition.
-
-
 ## Run the get-arch-bootstrap.sh script 
+- Check if the below script has the right parameters
 - Run ```./get-arch-bootstrap.sh```
 - The script asks for your password because of sudo
 

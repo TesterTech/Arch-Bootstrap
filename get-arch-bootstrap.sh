@@ -11,7 +11,7 @@ install -m 755 arch-bootstrap.sh /usr/local/bin/arch-bootstrap
 echo "Note:"
 echo "Automatic fstab in /etc/fstab make sure to change to real config"
 cd /tmp
-sudo genfstab  -U / > /tmp/fstab
+sudo genfstab  -U / >> /tmp/fstab
 sudo cp -f /tmp/fstab $MOUNT_POINT/tmp/fstab
 
 echo "Download the postinstall and copy to ${MOUNT_POINT}"

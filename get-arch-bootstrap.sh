@@ -14,11 +14,10 @@ cd /tmp
 sudo genfstab  -U / >> /tmp/fstab
 sudo mkdir -p $MOUNT_POINT/tmp
 sudo cp -f /tmp/fstab $MOUNT_POINT/tmp/fstab
+sudo arch-bootstrap $MOUNT_POINT
 
-echo "Download the postinstall and copy to ${MOUNT_POINT}"
 curl 'https://raw.githubusercontent.com/TesterTech/Arch-Bootstrap/ubuntu/arch-postinstall.sh' -o postinstall.sh
-sudo chmod +x postinstall.sh
-sudo cp ./postinstall.sh $MOUNT_POINT
+sudo chmod +x postinstall.sh && sudo cp ./postinstall.sh $MOUNT_POINT
 echo "Note: don't forget to run the postinstall from the /opt dir."
 
-sudo arch-chroot $MOUNT_POINT
+

@@ -9,11 +9,9 @@ echo "Get the mkinitcpio.conf from github"
 curl 'https://raw.githubusercontent.com/TesterTech/Arch-Bootstrap/master/mkinitcpio.conf' -o /etc/mkinitcpio.conf
 sudo cp -f /tmp/fstab /etc/fstab
 pacman -Syu
-pacman -S --noconfirm base plasma-desktop egl-wayland kwayland-server \
+pacman -S --noconfirm base egl-wayland kwayland-server \
 	              dhclient lvm2 linux-lts linux-lts-headers linux-firmware dialog iw \
-                      mc dhcpcd networkmanager sudo firefox git \
-                      man-pages man konsole 
-
+                      mc dhcpcd networkmanager sudo firefox git konsole 
+pacman -S --noconfirm --needed xorg sddm plasma kde-applications
 
 #dhclient eno1
-

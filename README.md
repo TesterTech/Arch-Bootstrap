@@ -12,10 +12,10 @@
 - Run ```./get-arch-bootstrap.sh```
 - The script asks for your password because of sudo
 
-## Run the postinstall script
+## Before running the postinstall script
 - Set the root password
 - Validate mkinitcpio and fstab files
-- Edit the fstab.auto to:  
+- Edit the fstab to:  
   - Keep /home /boot as they are
   - Remove unneeded root partition from the file
   - Change /opt to /

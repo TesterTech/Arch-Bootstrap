@@ -13,7 +13,7 @@ sudo cp -f /tmp/fstab /etc/fstab
 #end todo
 pacman -Syu
 #pacman -S --noconfirm base egl-wayland kwayland-server \
-pacman -S --noconfirm base egl-wayland \
+pacman -S --noconfirm base egl-wayland kwayland plasma-wayland-session \
 	              dhclient lvm2 linux-lts linux-lts-headers linux-firmware dialog iw \
                       mc dhcpcd networkmanager sudo firefox git konsole 
 pacman -S --noconfirm --needed xorg sddm plasma kde-applications
